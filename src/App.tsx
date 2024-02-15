@@ -5,30 +5,30 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import dataProvider, { GraphQLClient } from "@refinedev/graphql";
+import { authProvider, dataProvider,liveProvider } from "./providers";
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { App as AntdApp } from "antd";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { authProvider } from "./authProvider";
+// import { authProvider } from "./authProvider";
 import { ColorModeContextProvider } from "./contexts/color-mode";
 const API_URL = "https://your-graphql-url/graphql";
 
-const client = new GraphQLClient(API_URL);
-const gqlDataProvider = dataProvider(client);
+// const client = new GraphQLClient(API_URL);
+// const gqlDataProvider = dataProvider(client);
 
 function App() {
   return (
     <BrowserRouter>
       <GitHubBanner />
       <RefineKbarProvider>
-        <ColorModeContextProvider>
           <AntdApp>
             <DevtoolsProvider>
               <Refine
-                dataProvider={gqlDataProvider}
+              dataProvider={dataProvider}
+              liveProvider={liveProvider}
                 notificationProvider={useNotificationProvider}
                 routerProvider={routerBindings}
                 authProvider={authProvider}
@@ -36,7 +36,8 @@ function App() {
                   syncWithLocation: true,
                   warnWhenUnsavedChanges: true,
                   useNewQueryKeys: true,
-                  projectId: "REpzas-wwicrS-QfRw4W",
+                  projectId: 
+                  "REpzas-wwicrS-QfRw4W",
                 }}
               >
                 <Routes>
@@ -49,7 +50,6 @@ function App() {
               <DevtoolsPanel />
             </DevtoolsProvider>
           </AntdApp>
-        </ColorModeContextProvider>
       </RefineKbarProvider>
     </BrowserRouter>
   );
