@@ -1,6 +1,5 @@
 import { AuthProvider } from "@refinedev/core";
 
-
 import { API_URL, dataProvider } from "./data";
 
 /**
