@@ -57,6 +57,7 @@ const mapDeals = (
 export const mapDealsData = (
   dealStages: DealStage[] = []
 ): MappedDealData[] => {
+// console.log(dealStages);
   // Get the deal stage with the title "WON"
   const won = dealStages.find((stage) => stage.title === "WON");
   const wonDeals = mapDeals(won?.dealsAggregate, "Won");
@@ -64,6 +65,8 @@ export const mapDealsData = (
   // Get the deal stage with the title "LOST"
   const lost = dealStages.find((stage) => stage.title === "LOST");
   const lostDeals = mapDeals(lost?.dealsAggregate, "Lost");
+
+  // const newDeals=mapDeals(dealStages.find((stage)=>stage.title==="NEW")?.dealsAggregate,"New");
 
   // Combine the won and lost deals and sort them by time
   return [...wonDeals, ...lostDeals].sort((a, b) => a.timeUnix - b.timeUnix);
