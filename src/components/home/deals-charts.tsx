@@ -18,7 +18,6 @@ const DealsCharts = () => {
   const dealsData= React.useMemo(()=>{
     return mapDealsData(data?.data)
   },[data?.data])
-  console.log(dealsData,"Deals Data")
   const config:AreaConfig={
     data:dealsData,
     xField:'timeText',

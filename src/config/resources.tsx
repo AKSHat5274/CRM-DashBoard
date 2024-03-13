@@ -1,6 +1,8 @@
 import type { IResourceItem } from "@refinedev/core";
 
 import {
+  CalculatorOutlined,
+  CalendarOutlined,
   DashboardOutlined,
   ProjectOutlined,
   ShopOutlined,
@@ -13,6 +15,14 @@ export const resources: IResourceItem[] = [
     meta: {
       label: "Dashboard",
       icon: <DashboardOutlined />,
+    },
+  },
+  {
+    name: "Calendar",
+    list: "/calendar",
+    meta: {
+      label: "Calendar",
+      icon: <CalendarOutlined />,
     },
   },
   {
@@ -35,5 +45,6 @@ export const resources: IResourceItem[] = [
       label: "Tasks",
       icon: <ProjectOutlined />,
     },
+
   },
 ];

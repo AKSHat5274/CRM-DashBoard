@@ -15,6 +15,7 @@ export const DASHBOARD_TOTAL_COUNTS_QUERY = gql`
   }
 `;
 
+
 // Query to get upcoming events
 export const DASHBORAD_CALENDAR_UPCOMING_EVENTS_QUERY = gql`
   query DashboardCalendarUpcomingEvents(
@@ -34,6 +35,33 @@ export const DASHBORAD_CALENDAR_UPCOMING_EVENTS_QUERY = gql`
     }
   }
 `;
+export const CALENDAR_UPCOMING_EVENTS_QUERY = gql`
+  query DashboardCalendarUpcomingEvents(
+    $filter: EventFilter!
+    $sorting: [EventSort!]
+    $paging: OffsetPaging!
+  ) {
+    events(filter: $filter, sorting: $sorting, paging: $paging) {
+      totalCount
+      nodes {
+        id
+        title
+        color
+        startDate
+        endDate
+        description
+        participants{
+          id
+          name
+          avatarUrl
+        }
+        
+
+      }
+    }
+  }
+`;
+
 
 // Query to get deals chart
 export const DASHBOARD_DEALS_CHART_QUERY = gql`

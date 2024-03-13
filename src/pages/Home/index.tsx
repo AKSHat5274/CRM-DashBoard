@@ -1,9 +1,10 @@
 import React from "react";
-import { Col, Row } from "antd";
+import { Col, Row,ConfigProvider,theme } from "antd";
 import { DealsCharts, UpcomingEvents,TotalCountCards, DashBoardLatestActivities } from "@/components";
 import { useCustom } from "@refinedev/core";
 import { DASHBOARD_TOTAL_COUNTS_QUERY } from "@/graphql/queries";
 import { DashboardTotalCountsQuery } from "@/graphql/types";
+
 export const Home = () => {
   const {data,isLoading}=useCustom<DashboardTotalCountsQuery>({
     url:'',

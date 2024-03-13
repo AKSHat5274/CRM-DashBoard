@@ -1,4 +1,40 @@
 import type * as Types from "./schema.types";
+export type CalendarEventsQuery = {
+  events: Pick<Types.EventConnection, "totalCount"> & {
+    nodes: Array<
+      Pick<
+        Types.Event,
+        | "id"
+        | "title"
+        | "description"
+        | "startDate"
+        | "endDate"
+        | "color"
+        | "createdAt"
+      > & {
+        createdBy: Pick<Types.User, "id" | "name">;
+        category: Pick<Types.EventCategory, "id" | "title">;
+      }
+    >;
+  };
+};
+export type CalendarUpcomingEventsQuery={
+  
+}
+export type EventFragmentFragment = Pick<
+  Types.Event,
+  | "id"
+  | "title"
+  | "description"
+  | "startDate"
+  | "endDate"
+  | "color"
+  | "createdAt"
+> & {
+  createdBy: Pick<Types.User, "id" | "name">;
+  category: Pick<Types.EventCategory, "id" | "title">;
+  participants: Array<Pick<Types.User, "id" | "name">>;
+};
 
 export type UpdateUserMutationVariables = Types.Exact<{
   input: Types.UpdateOneUserInput;

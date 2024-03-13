@@ -1,19 +1,19 @@
-import { Authenticated, GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-
+import { ConfigProvider } from "antd/lib";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { authProvider, dataProvider,liveProvider } from "./providers";
-import {Home,ForgotPassword,Register,Login,CompanyPage} from './pages';
+import { authProvider, dataProvider, liveProvider } from "./providers";
+import { Home, ForgotPassword, Register, Login, CompanyPage } from "./pages";
 
 import routerBindings, {
   CatchAllNavigate,
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
-import { App as AntdApp } from "antd";
+import { App as AntdApp, theme } from "antd";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 // import { authProvider } from "./authProvider";
 import { ColorModeContextProvider } from "./contexts/color-mode";
@@ -24,6 +24,7 @@ import CompanyEdit from "./pages/Companies/edit";
 import TaskList from "./pages/Tasks/list";
 import { TasksCreatePage } from "./pages/Tasks/creates";
 import TaskEditPage from "./pages/Tasks/edit";
+import CalenderPage from "./pages/calenderPage";
 const API_URL = "https://your-graphql-url/graphql";
 
 // const client = new GraphQLClient(API_URL);
@@ -34,11 +35,17 @@ function App() {
     <BrowserRouter>
       <GitHubBanner />
       <RefineKbarProvider>
-          <AntdApp>
-            <DevtoolsProvider>
+        <AntdApp>
+          <DevtoolsProvider>
+            <ConfigProvider
+              theme={{
+                // 1. Use dark algorithm
+                algorithm: theme.darkAlgorithm,
+              }}
+            >
               <Refine
-              dataProvider={dataProvider}
-              liveProvider={liveProvider}
+                dataProvider={dataProvider}
+                liveProvider={liveProvider}
                 notificationProvider={useNotificationProvider}
                 routerProvider={routerBindings}
                 authProvider={authProvider}
@@ -47,49 +54,62 @@ function App() {
                   syncWithLocation: true,
                   warnWhenUnsavedChanges: true,
                   useNewQueryKeys: true,
-                  projectId: 
-                  "REpzas-wwicrS-QfRw4W",
+                  projectId: "REpzas-wwicrS-QfRw4W",
                 }}
               >
                 <Routes>
                   {/* <Route index element={<WelcomePage />} /> */}
-                  <Route path="/register" element={<Register/>} />
-                  <Route path="/login" element={<Login/>} />
-                  <Route path="/forgot-password" element={<ForgotPassword/>} />
-                  <Route 
-                  element={
-                  <Authenticated 
-                  key="authenticated-layout"
-                  fallback={<CatchAllNavigate to="/login"/>}
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/forgot-password" element={<ForgotPassword />} />
+                  <Route
+                    element={
+                      <Authenticated
+                        key="authenticated-layout"
+                        fallback={<CatchAllNavigate to="/login" />}
+                      >
+                        <Layout>
+                          <Outlet />
+                        </Layout>
+                      </Authenticated>
+                    }
                   >
-                    <Layout>
-                      <Outlet />
-                    </Layout>
-                  </Authenticated>
-                }
-                  >
-                  <Route index element={<Home/>} />
-                  <Route path="/companies">
-                    <Route index element={<CompanyPage/>} />
-                    <Route path="/companies/new" element={<CreateComapny/>}/>
-                    <Route path="/companies/edit/:id" element={<CompanyEdit/>}/>
+                    <Route index element={<Home />} />
+                    <Route path="/calendar" element={<CalenderPage />} />
+                    <Route path="/companies">
+                      <Route index element={<CompanyPage />} />
+                      <Route
+                        path="/companies/new"
+                        element={<CreateComapny />}
+                      />
+                      <Route
+                        path="/companies/edit/:id"
+                        element={<CompanyEdit />}
+                      />
+                    </Route>
+                    {/* <Route"> */}
+                    <Route
+                      path="/tasks"
+                      element={
+                        <TaskList>
+                          <Outlet />
+                        </TaskList>
+                      }
+                    />
+                    <Route path="/tasks/new" element={<TasksCreatePage />} />
+                    <Route path="/tasks/edit/:id" element={<TaskEditPage />} />
                   </Route>
-                  {/* <Route"> */}
-                    <Route  path="/tasks" element={<TaskList>
-                      <Outlet/>
-                    </TaskList>}/>
-                    <Route path="/tasks/new" element={<TasksCreatePage/>}/>
-                    <Route path="/tasks/edit/:id" element={<TaskEditPage/>}/>
-</Route>
+                  
                   {/* </Route> */}
                 </Routes>
                 <RefineKbar />
                 <UnsavedChangesNotifier />
                 <DocumentTitleHandler />
               </Refine>
-              <DevtoolsPanel />
-            </DevtoolsProvider>
-          </AntdApp>
+            </ConfigProvider>
+            <DevtoolsPanel />
+          </DevtoolsProvider>
+        </AntdApp>
       </RefineKbarProvider>
     </BrowserRouter>
   );
