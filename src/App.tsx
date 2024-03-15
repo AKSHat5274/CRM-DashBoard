@@ -24,7 +24,7 @@ import CompanyEdit from "./pages/Companies/edit";
 import TaskList from "./pages/Tasks/list";
 import { TasksCreatePage } from "./pages/Tasks/creates";
 import TaskEditPage from "./pages/Tasks/edit";
-import CalenderPage from "./pages/calenderPage";
+import CalenderPage from "./pages/CalendarPage";
 const API_URL = "https://your-graphql-url/graphql";
 
 // const client = new GraphQLClient(API_URL);
@@ -54,7 +54,7 @@ function App() {
                   syncWithLocation: true,
                   warnWhenUnsavedChanges: true,
                   useNewQueryKeys: true,
-                  projectId: "REpzas-wwicrS-QfRw4W",
+                  projectId: "REpzas-wwicrS-QfRw4X",
                 }}
               >
                 <Routes>

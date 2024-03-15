@@ -13,6 +13,7 @@ export const Home = () => {
       gqlQuery:DASHBOARD_TOTAL_COUNTS_QUERY
     }
   })
+  // console.log(data,"HOME PAGE ")
   return (
     <div>
       <Row gutter={[32, 32]}>

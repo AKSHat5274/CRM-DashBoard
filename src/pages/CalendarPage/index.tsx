@@ -10,11 +10,15 @@ import dayjs, { Dayjs } from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
 import utc from "dayjs/plugin/utc";
 import { Badge, Calendar, Drawer, List, Skeleton } from "antd";
-import { Text } from "../components/text";
+import { Text } from "../../components/text";
 import { CalendarProps } from "antd/lib";
 import { useState } from "react";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
-import { CalendarEventsQuery, EventFragmentFragment, TasksQuery } from "@/graphql/types";
+import {
+  CalendarEventsQuery,
+  EventFragmentFragment,
+  TasksQuery,
+} from "@/graphql/types";
 import { getDateColor } from "@/utilities";
 import {
   Accordion,
@@ -42,46 +46,43 @@ import listPlugin from "@fullcalendar/list";
 import { getDate } from "@/utilities/helpers";
 
 const CalenderPage = () => {
-  type SelectedEventType={
-    id:string|undefined,
-    color:string|undefined,
-    description:string|undefined,
-    title:string|undefined,
-    startDate:string,
-    endDate:string|undefined,
-    participants:[],
-    allDay:boolean
-  }
+  type SelectedEventType = {
+    id: string | undefined;
+    color: string | undefined;
+    description: string | undefined;
+    title: string | undefined;
+    startDate: string;
+    endDate: string | undefined;
+    participants: [];
+    allDay: boolean;
+  };
   const [current, setCurrent] = useState("");
   const [isTaskModalOpen, SetTaskModalOpen] = useState(false);
-  const [selectedTask, setSelectedTask] =
-    useState<GetFieldsFromList<TasksQuery>>();
-    const [selectedEvent,setSelectedEvent]= useState <SelectedEventType>();
+  const [selectedEvent, setSelectedEvent] = useState<SelectedEventType>();
   const [activeKey, setActiveKey] = useState<string | undefined>();
   dayjs.extend(isBetween);
   dayjs.extend(utc);
 
-
-  const { data: tasks, isLoading: isLoadingTasks } = useList<
-    GetFieldsFromList<TasksQuery>
-  >({
-    resource: "tasks",
-    sorters: [
-      {
-        field: "dueDate",
-        order: "asc",
-      },
-    ],
-    // queryOptions: {
-    //   enabled: !!stages,
-    // },
-    pagination: {
-      mode: "off",
-    },
-    meta: {
-      gqlQuery: TASKS_QUERY,
-    },
-  });
+  // const { data: tasks, isLoading: isLoadingTasks } = useList<
+  //   GetFieldsFromList<TasksQuery>
+  // >({
+  //   resource: "tasks",
+  //   sorters: [
+  //     {
+  //       field: "dueDate",
+  //       order: "asc",
+  //     },
+  //   ],
+  //   // queryOptions: {
+  //   //   enabled: !!stages,
+  //   // },
+  //   pagination: {
+  //     mode: "off",
+  //   },
+  //   meta: {
+  //     gqlQuery: TASKS_QUERY,
+  //   },
+  // });
   const { data: upcomingEvents, isLoading: isLoadingEvents } = useList({
     resource: "events",
     pagination: { mode: "off" },
@@ -125,19 +126,20 @@ const CalenderPage = () => {
   //   })
   // );
   const eventsFinal = (upcomingEvents?.data ?? []).map(
-    ({ id, title, startDate, endDate, color,description,participants }) => ({
+    ({ id, title, startDate, endDate, color, description
+      , participants }) => ({
       id: id,
       title: title,
       color: color,
       start: startDate,
       end: endDate,
-      description:description,
-      participants:participants,
+      description: description,
+      participants: participants,
       allDay: dayjs(endDate).utc().diff(dayjs(startDate).utc(), "hours") >= 23,
     })
   );
   const [isLoading, setIsLoading] = useState(false);
-  console.log(upcomingEvents, "upcoming events");
+  // console.log(upcomingEvents, "upcoming events");
 
   return (
     <>
@@ -152,10 +154,7 @@ const CalenderPage = () => {
             //   initialValues={{ title: selectedEvent?.title }}
             //   isLoading={isLoadingTasks}
             // />
-            <h2 color={selectedEvent?.color}
-            
-            >{selectedEvent?.title}
-            </h2>
+            <h2 color={selectedEvent?.color}>{selectedEvent?.title}</h2>
           }
           open={isTaskModalOpen}
           onClose={() => {
@@ -163,7 +162,6 @@ const CalenderPage = () => {
             // setSelectedEvent();
           }}
           width={586}
-          
         >
           <div>
             <Accordion
@@ -172,20 +170,24 @@ const CalenderPage = () => {
               setActive={setActiveKey}
               fallback={
                 // <DescriptionHeader description={selectedEvent?.description} />
-                <p style={{font:"message-box",fontSize:'20px'}}>{selectedEvent?.description}</p>
+                <Text strong>{selectedEvent?.description}</Text>
               }
-              isLoading={isLoadingTasks}
+              isLoading={isLoading}
               icon={<AlignLeftOutlined />}
               label="Description"
             >
-             <p style={{font:"message-box",fontSize:'20px'}}>{selectedEvent?.description}</p>
+              <Text strong>{selectedEvent?.description}</Text>{" "}
             </Accordion>
             <Accordion
               accordionKey="due-date"
               activeKey={activeKey}
               setActive={setActiveKey}
-              fallback={<Text size='md'>{getDate(selectedEvent?.startDate,selectedEvent?.endDate)}</Text>}
-              isLoading={isLoadingTasks}
+              fallback={
+                <Text size="md">
+                  {getDate(selectedEvent?.startDate, selectedEvent?.endDate)}
+                </Text>
+              }
+              isLoading={isLoading}
               icon={<FieldTimeOutlined />}
               label="Dates"
             >
@@ -193,32 +195,33 @@ const CalenderPage = () => {
                 initialValues={{ dueDate: selectedEvent?.endDate ?? undefined }}
                 cancelForm={() => setActiveKey(undefined)}
               /> */}
-              
+
               {/* <CalendarOutlined/> */}
-              <Text  size='md'>{getDate(selectedEvent?.startDate,selectedEvent?.endDate)}</Text>
-              
+              <Text size="md">
+                {getDate(selectedEvent?.startDate, selectedEvent?.endDate)}
+              </Text>
             </Accordion>
 
             {/* Render the users form inside an accordion */}
             <Accordion
-    accordionKey="users"
-    activeKey={activeKey}
-    setActive={setActiveKey}
-    fallback={<UsersHeader users={ selectedEvent?.participants} />}
-    isLoading={isLoadingTasks}
-    icon={<UsergroupAddOutlined />}
-    label="Users"
-  >
-    <UsersForm
-      initialValues={{
-        userIds: selectedEvent?.participants?.map((user) => ({
-          label: user?.name,
-          value: user?.id,
-        })),
-      }}
-      cancelForm={() => setActiveKey(undefined)}
-    />
-  </Accordion>
+              accordionKey="users"
+              activeKey={activeKey}
+              setActive={setActiveKey}
+              fallback={<UsersHeader users={selectedEvent?.participants} />}
+              isLoading={isLoading}
+              icon={<UsergroupAddOutlined />}
+              label="Users"
+            >
+              <UsersForm
+                initialValues={{
+                  userIds: selectedEvent?.participants?.map((user) => ({
+                    label: user?.name,
+                    value: user?.id,
+                  })),
+                }}
+                cancelForm={() => setActiveKey(undefined)}
+              />
+            </Accordion>
           </div>
         </Drawer>
       )}
@@ -226,19 +229,30 @@ const CalenderPage = () => {
       <div>
         <h1>Events Calendar</h1>
         <FullCalendar
+       
           plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
           initialView={"dayGridMonth"}
           events={eventsFinal}
           eventTimeFormat={{
             hour: "2-digit",
             minute: "2-digit",
-            // meridiem: false,
+            meridiem: false,
           }}
+          timeZone="UTC"
           dragScroll
           eventClick={(event) => {
             SetTaskModalOpen(true);
-            console.log(selectedEvent);
-           setSelectedEvent(upcomingEvents?.data?.find(({ id }) => id === event?.event?._def?.publicId) as Event)
+            // console.log(selectedEvent);
+            setSelectedEvent(
+              upcomingEvents?.data?.find(
+                ({ id }) => id === event?.event?._def?.publicId
+              ) as Event
+            );
+          }}
+          headerToolbar={{
+            start: 'title', // will normally be on the left. if RTL, will be on the right
+            center: '',
+            end: 'today prev,next dayGridMonth,timeGridDay,listMonth' // will normally be on the right. if RTL, will be on the left
           }}
         />
         {/* <Calendar cellRender={cellRender} mode="month" fullscreen onPanelChange={()=>false} onChange={()=>false} onSelect={()=>false} value={dayjs()} validRange={[dayjs(),dayjs().add(31,"days")]}/> */}

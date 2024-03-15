@@ -15,6 +15,7 @@ const DealsCharts = () => {
       gqlQuery:DASHBOARD_DEALS_CHART_QUERY
     }
   });
+  // console.log(data,"Deals Data")
   const dealsData= React.useMemo(()=>{
     return mapDealsData(data?.data)
   },[data?.data])
