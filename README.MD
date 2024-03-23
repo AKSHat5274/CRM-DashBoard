@@ -1,13 +1,39 @@
+
 # JIRA Clone/ CRM Dashboard
 
-##Functions
+Web application that helps the user visualize and manage the whole sales pipeline along with tasks and an event manager. Made with refine. dev framework along with graphql for the backend.
 
 
-## Getting Started
 
-A React Framework for building internal tools, admin panels, dashboards & B2B apps with unmatched flexibility ✨
+## Demo
 
-Refine's hooks and components simplifies the development process and eliminates the repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including authentication, access control, routing, networking, state management, and i18n.
+https://crm-dash-board-akshat-sharma.vercel.app/
+
+
+
+## Screenshots
+
+
+
+
+## Tech Stack
+
+**Client:** React, Redux, Ant Design
+
+**Server:** Node.js, GraphQL
+
+
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  npm run test
+```
+
+
+
+
 
 ## Available Scripts
 
