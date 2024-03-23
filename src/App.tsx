@@ -33,7 +33,6 @@ const API_URL = "https://your-graphql-url/graphql";
 function App() {
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
         <AntdApp>
           <DevtoolsProvider>
