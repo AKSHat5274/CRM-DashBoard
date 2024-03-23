@@ -1,19 +1,55 @@
-# dry-parents-fold
 
-<div align="center" style="margin: 30px;">
-    <a href="https://refine.dev">
-    <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
-    </a>
-</div>
-<br/>
+# JIRA Clone/ CRM Dashboard
 
-This [Refine](https://github.com/refinedev/refine) project was generated with [create refine-app](https://github.com/refinedev/refine/tree/master/packages/create-refine-app).
+Web application that helps the user visualize and manage the whole sales pipeline along with tasks and an event manager. Made with refine. dev framework along with graphql for the backend.
 
-## Getting Started
 
-A React Framework for building internal tools, admin panels, dashboards & B2B apps with unmatched flexibility ✨
 
-Refine's hooks and components simplifies the development process and eliminates the repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including authentication, access control, routing, networking, state management, and i18n.
+## Demo
+
+https://crm-dash-board-akshat-sharma.vercel.app/
+
+
+
+## Features
+Dashboard: Gain insights into your business with interactive charts and analytics.
+
+Calendar: Schedule and manage appointments, meetings, and events.
+
+Tasks: Organize and track tasks using a Kanban-style board.
+
+Companies: Create, update, and delete company records and monitor deals with those companies.
+
+Contacts: Manage your customer contacts efficiently.
+
+Calendar: Manage and visualize all the events in the month in the form of a chart or a list
+
+
+
+
+## Screenshots
+
+
+
+
+## Tech Stack
+
+**Client:** React, Redux, Ant Design
+
+**Server:** Node.js, GraphQL
+
+
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  npm run test
+```
+
+
+
+
 
 ## Available Scripts
 
