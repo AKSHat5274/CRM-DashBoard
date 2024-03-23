@@ -30,13 +30,12 @@ Calendar: Manage and visualize all the events in the month in the form of a char
 
 ## Screenshots
 
-<img
-src=“ScreenShots/DashBoard.png”
-raw=true
-alt=“Subject Pronouns”
-style=“margin-right: 10px;”
-/>
 
+<br>
+
+![Dashboard Page]https://github.com/AKSHat5274/CRM-DashBoard/tree/master/ScreenShots/DashBoard.png "Dashboard Page")
+
+<br>
 
 ## Tech Stack
 
