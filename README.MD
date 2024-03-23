@@ -9,6 +9,7 @@ Web application that helps the user visualize and manage the whole sales pipelin
 
 https://crm-dash-board-akshat-sharma.vercel.app/
 
+## How it works/ Documentation:
 
 
 ## Features
@@ -29,7 +30,7 @@ Calendar: Manage and visualize all the events in the month in the form of a char
 
 ## Screenshots
 
-
+![Dashboard](https://github.com/AKSHat5274/CRM-DashBoard/tree/master/ScreenShots/Dashboard.png)
 
 
 ## Tech Stack
