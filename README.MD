@@ -33,7 +33,7 @@ Calendar: Manage and visualize all the events in the month in the form of a char
 
 <br>
 
-![Dashboard Page]https://github.com/AKSHat5274/CRM-DashBoard/tree/master/ScreenShots/DashBoard.png "Dashboard Page")
+![Dashboard Page](https://github.com/AKSHat5274/CRM-DashBoard/tree/master/ScreenShots/DashBoard.png "Dashboard Page")
 
 <br>
 
