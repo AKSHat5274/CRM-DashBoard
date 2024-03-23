@@ -11,6 +11,22 @@ https://crm-dash-board-akshat-sharma.vercel.app/
 
 
 
+## Features
+Dashboard: Gain insights into your business with interactive charts and analytics.
+
+Calendar: Schedule and manage appointments, meetings, and events.
+
+Tasks: Organize and track tasks using a Kanban-style board.
+
+Companies: Create, update, and delete company records and monitor deals with those companies.
+
+Contacts: Manage your customer contacts efficiently.
+
+Calendar: Manage and visualize all the events in the month in the form of a chart or a list
+
+
+
+
 ## Screenshots
 
 
