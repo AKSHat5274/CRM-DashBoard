@@ -33,7 +33,25 @@ Calendar: Manage and visualize all the events in the month in the form of a char
 
 <br>
 
-<img src="./ScreenShots/Dashboard.png">
+<img src="./ScreenShots/Dashboard.png" alt=“DashBoard”>
+<h3>DashBoard</h3>
+<br/>
+<img src="./ScreenShots/Login.png" alt=“DashBoard”>
+<h3>Login</h3>
+<br/>
+<img src="./ScreenShots/Calendar.png" alt=“DashBoard”>
+<h3>Calendar</h3>
+<br/>
+<img src="./ScreenShots/Calendar2.png" alt=“DashBoard”>
+<h3>Calendar Events</h3>
+<br/>
+<img src="./ScreenShots/Companies.png" alt=“DashBoard”>
+<h3>Comapany Page</h3>
+<br/>
+<img src="./ScreenShots/Tasks.png" alt=“DashBoard”>
+<h3>Tasks</h3>
+<br/>
+
 
 <br>
 
