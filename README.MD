@@ -1,6 +1,6 @@
 # JIRA Clone/ CRM Dashboard
 
-#Functions
+##Functions
 
 
 ## Getting Started
